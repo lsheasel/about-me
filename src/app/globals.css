@@ -32,3 +32,47 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* glitch effect */
+.glitch-text {
+  color: inherit;
+  position: relative;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.glitch-text::before {
+  color: #60a5fa;
+  z-index: 2;
+  animation: glitchTop 1.2s infinite linear alternate-reverse;
+  clip-path: inset(0 0 60% 0);
+}
+.glitch-text::after {
+  color: #3b82f6;
+  z-index: 1;
+  animation: glitchBot 1.1s infinite linear alternate-reverse;
+  clip-path: inset(60% 0 0 0);
+}
+@keyframes glitchTop {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-2px,-2px); }
+  40% { transform: translate(-2px,2px); }
+  60% { transform: translate(2px,-1px); }
+  80% { transform: translate(2px,1px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes glitchBot {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(2px,2px); }
+  40% { transform: translate(2px,-2px); }
+  60% { transform: translate(-2px,1px); }
+  80% { transform: translate(-2px,-1px); }
+  100% { transform: translate(0,0); }
+}

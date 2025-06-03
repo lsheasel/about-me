@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaDiscord, FaEnvelope, FaReact, FaNodeJs, FaCode, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiJavascript, SiTypescript, SiMysql, SiTailwindcss, SiNextdotjs, SiFedora } from 'react-icons/si';
-import ProjectCard from '../components/ProjectCard';
 import { useScrollProgress } from '../hooks/useScrollProgress';
 import { useInView } from 'react-intersection-observer';
 import Terminal from '../components/Terminal/Terminal';
@@ -496,90 +495,51 @@ export default function Home() {
 
       <main className="container mx-auto px-4 pt-20">
         {/* Hero Section */}
-        <section id="home" className="min-h-screen flex items-center">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {/* Linke Seite: Text */}
-            <div>
-              <motion.p 
-                custom={0}
-                variants={titleAnimation}
-                initial="hidden"
-                animate="visible"
-                className="inline-block bg-gradient-to-r from-[#1e293b] to-[#0f172a] text-[#60a5fa] px-3 py-1 rounded mb-6 text-sm font-mono font-semibold tracking-wide shadow shadow-[#60a5fa]/10"
-              >
-                Hobby Developer & Linux Enthusiast
-              </motion.p>
-              <motion.h1 
-                custom={1}
-                variants={titleAnimation}
-                initial="hidden"
-                animate="visible"
-                className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#60a5fa] via-[#3b82f6] to-[#1e293b] bg-clip-text text-transparent"
-              >
+        <section id="home" className="min-h-screen flex items-center justify-center">
+          <div className="max-w-2xl mx-auto w-full flex flex-col items-center text-center">
+            
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-6xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-[#60a5fa] via-[#3b82f6] to-[#1e293b] bg-clip-text text-transparent select-none relative"
+              style={{
+                letterSpacing: '2px',
+                textShadow: '0 0 16px #60a5fa55'
+              }}
+            >
+              <span className=" relative inline-block select-none" data-text="Shease">
                 I'm Shease
-              </motion.h1>
-              <motion.h2
-                custom={2}
-                variants={titleAnimation}
-                initial="hidden"
-                animate="visible"
-                className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent"
-              >
-                I build things for the web and other Stuff
-              </motion.h2>
-              <motion.p 
-                custom={3}
-                variants={titleAnimation}
-                initial="hidden"
-                animate="visible"
-                className="text-gray-300 max-w-2xl mb-8 leading-relaxed"
-              >
-                I'm passionate about creating modern web applications and constantly exploring new technologies. 
-                As a programming student, I focus on software development with a special interest in Linux 
-                and open-source technologies. I love turning complex problems into elegant solutions through code.
-              </motion.p>
-              <motion.button
-                custom={4}
-                variants={titleAnimation}
-                initial="hidden"
-                animate="visible"
-                whileHover={{ 
-                  scale: 1.05,
-                  background: "linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%)",
-                  boxShadow: "0 0 20px #60a5fa55"
-                }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
-                className="px-8 py-3 rounded-lg transition-all font-mono font-semibold bg-gradient-to-r from-[#60a5fa] to-[#3b82f6] text-white shadow shadow-[#60a5fa]/20 border-0"
-              >
-                Contact Me
-              </motion.button>
-            </div>
-            {/* Rechte Seite: Skills-Icons */}
-            <div className="flex justify-center items-center">
-              <div className="relative">
-                {/* Glow-Effekt - kleiner, dezenter */}
-                <div className="absolute -inset-4 rounded-3xl opacity-10 blur-xl z-0" />
-                <div className="relative z-10 flex flex-col gap-6 bg-transparent">
-                  {/* Obere Reihe: 2 Icons zentriert */}
-                  <div className="flex justify-center gap-6">
-                    <SkillIcon icon={skills[0].icon} color="#60a5fa" />
-                    <SkillIcon icon={skills[1].icon} color="#60a5fa" />
-                  </div>
-                  {/* Mittlere Reihe: 3 Icons, Fedora in der Mitte */}
-                  <div className="flex justify-center gap-6">
-                    <SkillIcon icon={skills[2].icon} color="#60a5fa" />
-                    <SkillIcon icon={SiFedora} color="#51A2DA" />
-                    <SkillIcon icon={skills[3].icon} color="#60a5fa" />
-                  </div>
-                  {/* Untere Reihe: 2 Icons zentriert */}
-                  <div className="flex justify-center gap-6">
-                    <SkillIcon icon={skills[4].icon} color="#60a5fa" />
-                    <SkillIcon icon={skills[5].icon} color="#60a5fa" />
-                  </div>
-                </div>
-              </div>
-            </div>
+              </span>
+            </motion.h1>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="text-2xl md:text-3xl font-bold mb-8 text-[#60a5fa]"
+            >
+              I build things for the web and other Stuff
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="text-gray-300 max-w-xl mb-10 leading-relaxed"
+            >
+              I'm passionate about creating modern web applications and constantly exploring new technologies. As a programming student, I focus on software development with a special interest in Linux and open-source technologies. I love turning complex problems into elegant solutions through code.
+            </motion.p>
+            <motion.button
+              whileHover={{
+                scale: 1.07,
+                background: "linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%)",
+                boxShadow: "0 0 20px #60a5fa55"
+              }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => scrollToSection('projects')}
+              className="px-8 py-3 rounded-lg transition-all font-mono font-semibold bg-gradient-to-r from-[#60a5fa] to-[#3b82f6] text-white shadow shadow-[#60a5fa]/20 border-0"
+            >
+              See My Projects
+            </motion.button>
           </div>
         </section>
 
