@@ -44,6 +44,7 @@ export default function Home() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [currentProject, setCurrentProject] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Add this near your other refs and state
   const [ref, inView] = useInView({
@@ -164,7 +165,7 @@ export default function Home() {
       title: "Portfolio Website",
       description: "Modern portfolio built with Next.js, featuring smooth animations, dynamic content loading, and responsive design.",
       tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
-      github: "https://github.com/yourusername/portfolio",
+      github: "https://github.com/lsheasel/about-me",
       live: "https://shease.de",
       image: "/projects/portfolio.png"
     },
@@ -394,11 +395,46 @@ export default function Home() {
       {/* Updated Navbar */}
       <nav className="fixed w-full bg-gradient-to-b from-[#0a1120] to-[#0f172a]/95 backdrop-blur-lg z-50 border-b border-[#60a5fa]/10">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <motion.div className="flex flex-col sm:flex-row justify-between items-center">
-            <motion.div className="text-2xl font-bold text-[#60a5fa] mb-4 sm:mb-0">
+          <div className="flex justify-between items-center">
+            <motion.div className="text-2xl font-bold text-[#60a5fa]">
               Shease
             </motion.div>
-            <motion.div className="flex flex-wrap justify-center gap-4 sm:gap-8">
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-gray-400 hover:text-[#60a5fa] transition-colors"
+            >
+              <motion.div
+                animate={isMenuOpen ? "open" : "closed"}
+                className="w-6 h-6 flex flex-col justify-around"
+              >
+                <motion.span
+                  variants={{
+                    closed: { rotate: 0, y: 0 },
+                    open: { rotate: 45, y: 8 }
+                  }}
+                  className="w-full h-0.5 bg-current transition-all"
+                />
+                <motion.span
+                  variants={{
+                    closed: { opacity: 1 },
+                    open: { opacity: 0 }
+                  }}
+                  className="w-full h-0.5 bg-current transition-all"
+                />
+                <motion.span
+                  variants={{
+                    closed: { rotate: 0, y: 0 },
+                    open: { rotate: -45, y: -8 }
+                  }}
+                  className="w-full h-0.5 bg-current transition-all"
+                />
+              </motion.div>
+            </button>
+
+            {/* Desktop Navigation */}
+            <motion.div className="hidden md:flex items-center gap-8">
               {[
                 { name: 'Home', id: 'home' },
                 { name: 'Projects', id: 'projects' },
@@ -414,13 +450,47 @@ export default function Home() {
                     scale: 1.1,
                     textShadow: '0 0 8px #60a5fa'
                   }}
-                  className="relative text-gray-300 hover:text-[#60a5fa] transition-colors px-2 py-1"
+                  className="text-gray-300 hover:text-[#60a5fa] transition-colors"
                 >
                   {item.name}
                 </motion.button>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="md:hidden mt-4"
+              >
+                <div className="flex flex-col gap-4">
+                  {[
+                    { name: 'Home', id: 'home' },
+                    { name: 'Projects', id: 'projects' },
+                    { name: 'Terminal', id: 'terminal' },
+                    { name: 'Friends', id: 'friends' },
+                    { name: 'Contact', id: 'contact' }
+                  ].map((item) => (
+                    <motion.button
+                      key={item.name}
+                      onClick={() => {
+                        scrollToSection(item.id);
+                        setIsMenuOpen(false);
+                      }}
+                      whileHover={{ color: '#60a5fa' }}
+                      className="text-gray-300 hover:text-[#60a5fa] transition-colors py-2 text-center"
+                    >
+                      {item.name}
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </nav>
 
