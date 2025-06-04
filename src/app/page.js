@@ -299,7 +299,6 @@ export default function Home() {
                 { name: 'Terminal', id: 'terminal' },
                 { name: 'Friends', id: 'friends' },
                 { name: 'Contact', id: 'contact' },
-                { name: 'Impress', id: 'impress' },
               ].map((item) => (
                 <motion.button
                   key={item.name}
@@ -331,7 +330,6 @@ export default function Home() {
                     { name: 'Terminal', id: 'terminal' },
                     { name: 'Friends', id: 'friends' },
                     { name: 'Contact', id: 'contact' },
-                    { name: 'Impress', id: 'impress' },
                   ].map((item) => (
                     <motion.button
                       key={item.name}
