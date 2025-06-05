@@ -78,9 +78,8 @@ const ImpressSection = ({ onClose }) => {
         <div className="space-y-4 text-gray-300">
           <p>
             <strong>Name:</strong> Jan Feller<br />
-            <strong>Anschrift:</strong> Königstraße 36<br />
-            <strong>Stadt:</strong> 32584 Löhne<br />
-            <strong>Land:</strong> Deutschland
+            <strong>Anschrift aus Datenschutzrechtlichen Gründen entfernt.</strong><br />
+            <strong>Dies kann per E-Mail Angefragt werden</strong><br />
           </p>
           <p>
             <strong>Kontakt:</strong><br />
@@ -91,8 +90,8 @@ const ImpressSection = ({ onClose }) => {
           <p>
             <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br />
             Jan Feller<br />
-            Königstraße 36<br />
-            32584 Löhne
+            Anschrift aus Datenschutzrechtlichen Gründen entfernt.<br />
+            Dies kann per E-Mail Angefragt werden
           </p>
           <p>
             <strong>Haftungshinweis:</strong><br />
