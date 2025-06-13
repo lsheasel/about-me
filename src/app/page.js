@@ -7,6 +7,8 @@ import { useScrollProgress } from '../hooks/useScrollProgress';
 import { useInView } from 'react-intersection-observer';
 import Terminal from '../components/Terminal/Terminal';
 import ImpressSection from '../components/ImpressSection';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 const ScrollProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -37,7 +39,7 @@ export default function Home() {
   const projectsRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isImpressVisible, setIsImpressVisible] = useState(false); // Neuer State für Impressum
+  const [isImpressVisible, setIsImpressVisible] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -87,7 +89,6 @@ export default function Home() {
       description: "Modern portfolio built with Next.js, featuring smooth animations, dynamic content loading, and responsive design.",
       tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/lsheasel/about-me",
-      live: "https://shease.de",
       image: "/projects/portfolio.png",
     },
     {
@@ -96,6 +97,14 @@ export default function Home() {
       tech: ["React", "Node.js", "Supabase", "Socket.io", "Tailwind CSS"],
       github: "https://github.com/lsheasel/poker-app",
       image: "/projects/poker-game.png",
+    },
+    {
+      title: "CoralSMP",
+      description: "A german Minecraft server with a SMP like experience, featuring custom plugins and a vibrant community.",
+      tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      github: "https://coralsmp.de",
+      
+      image: "/projects/coralsmp.png",
     },
   ];
 
@@ -117,9 +126,9 @@ export default function Home() {
 
   const scrollToSection = (sectionId) => {
     if (sectionId === 'impress') {
-      setIsImpressVisible(true); // Öffne Impressum-Modal
+      setIsImpressVisible(true);
     } else {
-      setIsImpressVisible(false); // Schließe Impressum-Modal
+      setIsImpressVisible(false);
       const element = document.getElementById(sectionId);
       if (element) {
         window.scrollTo({
@@ -417,66 +426,72 @@ export default function Home() {
             >
               <span className="text-[#60a5fa]">My</span> Projects
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
-              <div className="col-span-full lg:col-span-3 flex flex-wrap justify-center gap-6 w-full">
-                {projects.map((project, index) => (
-                  <motion.div
-                    key={project.title}
-                    style={{
-                      opacity: Math.max(0, projectsProgress * 2 - (index * 0.2)),
-                      transform: `scale(${0.97 + (projectsProgress * 0.03)}) translateY(${20 - (projectsProgress * 20)}px)`,
-                      boxShadow: projectsProgress > 0.9
-                        ? '0 0 24px 0 #60a5fa66'
-                        : '0 1px 4px 0 rgba(96,165,250,0.08)',
-                      transition: 'all 0.5s cubic-bezier(0.4,0.08,0.23,0.96)'
-                    }}
-                    className={`relative group w-full max-w-sm ${
-                      projects.length === 1 ? 'lg:max-w-md' : 
-                      projects.length === 2 ? 'sm:w-[calc(50%-12px)]' : 
-                      'sm:w-full'
-                    } bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#1e293b] rounded-xl overflow-hidden hover:shadow-lg hover:shadow-[#60a5fa]/10 transition-all`}
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      {project.image ? (
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] flex items-center justify-center">
-                          <FaCode className="text-2xl text-white/50" />
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e293b] to-transparent opacity-60" />
-                    </div>
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-xl font-bold text-[#60a5fa]">{project.title}</h3>
-                      <p className="text-gray-400 text-sm line-clamp-2">{project.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-1 text-xs rounded-full bg-[#60a5fa]/10 text-[#60a5fa] border border-[#60a5fa]/20"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+            <div className="flex flex-row gap-6 justify-center w-full">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  style={{
+                    opacity: Math.max(0, projectsProgress * 2 - (index * 0.2)),
+                    transform: `scale(${0.97 + (projectsProgress * 0.03)}) translateY(${20 - (projectsProgress * 20)}px)`,
+                    boxShadow: projectsProgress > 0.9
+                      ? '0 0 24px 0 #60a5fa66'
+                      : '0 1px 4px 0 rgba(96,165,250,0.08)',
+                    transition: 'all 0.5s cubic-bezier(0.4,0.08,0.23,0.96)'
+                  }}
+                  className="relative group w-full max-w-[360px] bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#1e293b] rounded-xl overflow-hidden hover:shadow-lg hover:shadow-[#60a5fa]/10 transition-all"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] flex items-center justify-center">
+                        <FaCode className="text-2xl text-white/50" />
                       </div>
-                      <div className="flex gap-4 pt-2">
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e293b] to-transparent opacity-60" />
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-bold text-[#60a5fa]">{project.title}</h3>
+                    <p className="text-gray-400 text-sm line-clamp-2">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 text-xs rounded-full bg-[#60a5fa]/10 text-[#60a5fa] border border-[#60a5fa]/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-4 pt-2">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-[#60a5fa] transition-all duration-300 hover:scale-110"
+                      >
+                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> 
+                      </a>
+                      {project.live && (
                         <a
-                          href={project.github}
+                          href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-gray-400 hover:text-[#60a5fa] transition-all duration-300 hover:scale-110"
                         >
-                          <FaGithub size={20} />
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 0a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 10 4.84c.85 0 1.71.11 2.52.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.67.94.67 1.89v2.8c0 .26.18.57.69.48A10 10 0 0 0 10 0z" />
+                          </svg>
                         </a>
-                      </div>
+                      )}
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </section>
