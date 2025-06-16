@@ -46,7 +46,7 @@ ${formatOutput('Fun Stuff:', 'section')}
 ┌─────────────────────────────────┐
 │             Shease              │
 ├─────────────────────────────────┤
-│  Full-Stack Web Developer       │
+│  Hobby Web Developer            │
 │  Based in Germany               │
 │  Passionate about Linux & Web   │
 │  Love creating cool stuff       │
