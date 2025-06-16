@@ -44,7 +44,7 @@ ${formatOutput('Fun Stuff:', 'section')}
     about: () => ({
       output: formatOutput(`
 ┌─────────────────────────────────┐
-│         Sebastian Hease         │
+│             Shease              │
 ├─────────────────────────────────┤
 │  Full-Stack Web Developer       │
 │  Based in Germany               │
