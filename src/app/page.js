@@ -363,19 +363,21 @@ export default function Home() {
         <section id="home" className="min-h-screen flex items-center justify-center">
           <div className="max-w-2xl mx-auto w-full flex flex-col items-center text-center">
             <motion.h1
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-[#60a5fa] via-[#3b82f6] to-[#1e293b] bg-clip-text text-transparent select-none relative"
-              style={{
-                letterSpacing: '2px',
-                textShadow: '0 0 16px #60a5fa55'
-              }}
-            >
-              <span className="relative inline-block select-none" data-text="Shease">
-                I'm Shease
-              </span>
-            </motion.h1>
+  initial={{ opacity: 0, scale: 1 }} // Skalierung entfernt
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="text-6xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent select-none relative" // Gradienten vereinfacht
+  style={{
+    letterSpacing: '1px', // Reduziertes Letter Spacing
+    backfaceVisibility: 'hidden', // Rendering verbessern
+    transform: 'translateZ(0)',
+    // textShadow entfernt
+  }}
+>
+  <span className="relative inline-block select-none" data-text="Shease">
+    I'm Shease
+  </span>
+</motion.h1>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
