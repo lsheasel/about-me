@@ -86,6 +86,7 @@ export default function Home() {
   const projects = [
     {
       title: "Portfolio Website",
+      going: "Ongoing",
       description: "Modern portfolio built with Next.js, featuring smooth animations, dynamic content loading, and responsive design.",
       tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/lsheasel/about-me",
@@ -93,6 +94,7 @@ export default function Home() {
     },
     {
       title: "Poker Game",
+      going: "Finished",
       description: "Poker game application with real-time multiplayer functionality, built using React and Node.js.",
       tech: ["React", "Node.js", "Supabase", "Socket.io", "Tailwind CSS"],
       github: "https://github.com/lsheasel/poker-app",
@@ -100,6 +102,7 @@ export default function Home() {
     },
     {
       title: "CoralSMP",
+      going: "Ongoing",
       description: "A german Minecraft server with a SMP like experience, featuring custom plugins and a vibrant community.",
       tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
       github: "https://coralsmp.de",
@@ -442,6 +445,7 @@ export default function Home() {
                   }}
                   className="relative group w-full max-w-[360px] bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#1e293b] rounded-xl overflow-hidden hover:shadow-lg hover:shadow-[#60a5fa]/10 transition-all"
                 >
+                  {/* Project Image or Placeholder */}
                   <div className="relative h-48 overflow-hidden">
                     {project.image ? (
                       <img
@@ -454,6 +458,15 @@ export default function Home() {
                         <FaCode className="text-2xl text-white/50" />
                       </div>
                     )}
+                    <div className=''>
+                      <span className="absolute top-2 right-2 bg-[#60a5fa]/10 text-[#60a5fa] px-2 py-1 text-xs rounded-full border border-[#60a5fa]/20 backdrop-blur-sm">
+                        {project.going === "Ongoing" ? (
+                          <span className="text-green-400">Ongoing</span>
+                        ) : (
+                          <span className="text-red-400">Finished</span>
+                        )}
+                      </span>
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1e293b] to-transparent opacity-60" />
                   </div>
                   <div className="p-6 space-y-4">
