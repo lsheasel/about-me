@@ -81,10 +81,6 @@ src/
 - Discord: shease.
 - GitHub: [@lsheasel](https://github.com/lsheasel)
 
-## License
-
-This project is open source and available under the MIT License.
-
 ## Deployment
 
 The site is deployed on [Vercel](https://vercel.com) and can be viewed at [shease.de](https://shease.de).
